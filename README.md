@@ -46,7 +46,7 @@ python src/train_dpo.py
 ```bibtex
 @article{yourname2025dpo,
   title={DPO vs RLHF: A Comparative Alignment Study},
-  author={Your Name},
+  author={Mohit Yadav},
   year={2025}
 }
 ```
