@@ -1,0 +1,9 @@
+Metric,Value
+Total Train Samples,"160,800"
+Total Test Samples,"8,552"
+Avg Chosen Length (words),113.7
+Avg Rejected Length (words),121.5
+Max Chosen Length (words),767
+Max Rejected Length (words),783
+Min Chosen Length (words),4
+Min Rejected Length (words),6
