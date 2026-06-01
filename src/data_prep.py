@@ -19,7 +19,7 @@ os.makedirs("results/tables", exist_ok=True)
 os.makedirs("data", exist_ok=True)
 
 print("=" * 60)
-print("  DPO vs RLHF Study — Data Exploration")
+print("DPO vs RLHF Study — Data Exploration")
 print("=" * 60)
 
 #Step 1: Load dataset 
