@@ -1,17 +1,19 @@
 # DPO vs RLHF: A Comparative Alignment Study
 
-**Paper Status:** In Progress  
-**Authors:** [Mohit Yadav] — [Chandigarh University]  
+**Paper Status:** In Progress — Day 2/5 Complete
+**Author:** Mohit Yadav — Chandigarh University
 **Target Venue:** EMNLP 2025 / COLING 2026
+**GitHub:** https://github.com/AnthropicBots/dpo-vs-rlhf-alignmet-study
 
 ---
 
 ## Abstract
 This study presents a systematic empirical comparison of two dominant
 LLM alignment paradigms: Reinforcement Learning from Human Feedback (RLHF)
-and Direct Preference Optimisation (DPO). We fine-tune LLaMA-3-8B on the
-Anthropic HH-RLHF dataset under both training regimes and evaluate across
-helpfulness, harmlessness, honesty (3H), and computational efficiency metrics.
+and Direct Preference Optimisation (DPO). We fine-tune GPT-2 (124M) on the
+Anthropic HH-RLHF dataset (160,800 preference pairs) under both training
+regimes and evaluate across response quality, training efficiency, and
+alignment robustness metrics.
 
 ---
 
@@ -22,31 +24,50 @@ helpfulness, harmlessness, honesty (3H), and computational efficiency metrics.
 
 ---
 
-## Key Results
-*(To be filled after experiments)*
+## Progress
 
-| Method | Helpfulness | Harmlessness | Training Time |
-|--------|-------------|--------------|---------------|
-| RLHF   | -           | -            | -             |
-| DPO    | -           | -            | -             |
+| Day | Task | Status |
+|-----|------|--------|
+| Day 1 | Environment setup, dataset exploration | ✅ Done |
+| Day 2 | SFT baseline training (loss 3.86 → 1.18) | ✅ Done |
+| Day 3 | DPO + RLHF training | 🔄 In Progress |
+| Day 4 | Full evaluation + graphs | ⏳ Pending |
+| Day 5 | Paper writing + arXiv upload | ⏳ Pending |
+
+---
+
+## Key Results
+*(Updated after Day 4)*
+
+| Method | Avg Quality Score | Training Time | Reward Hacking |
+|--------|------------------|---------------|----------------|
+| SFT Baseline | - | 11.9 min | N/A |
+| DPO | - | - | None (by design) |
+| RLHF | - | - | Possible |
 
 ---
 
 ## Reproduce This Work
 ```bash
-git clone https://github.com/YOURUSERNAME/dpo-vs-rlhf-alignment-study
-cd dpo-vs-rlhf-alignment-study
+git clone https://github.com/AnthropicBots/dpo-vs-rlhf-alignmet-study
+cd dpo-vs-rlhf-alignmet-study
 pip install -r requirements.txt
-python src/train_dpo.py
+python src/data_prep.py    # Day 1
+python src/train_sft.py    # Day 2
+python src/train_dpo.py    # Day 3
+python src/train_rlhf.py   # Day 3
+python src/evaluate.py     # Day 4
+python src/write_paper.py  # Day 5
 ```
 
 ---
 
 ## Citation
 ```bibtex
-@article{yourname2025dpo,
-  title={DPO vs RLHF: A Comparative Alignment Study},
-  author={Mohit Yadav},
-  year={2025}
+@article{yadav2026dpo,
+  title={DPO vs RLHF: An Empirical Comparison of LLM Alignment Techniques},
+  author={Yadav, Mohit},
+  institution={Chandigarh University},
+  year={2026}
 }
 ```
