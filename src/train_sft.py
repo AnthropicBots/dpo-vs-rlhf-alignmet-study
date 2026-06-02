@@ -80,8 +80,10 @@ args = TrainingArguments(
     warmup_steps=100,
     weight_decay=0.01,
     logging_steps=50,
+    eval_strategy="steps",
     eval_steps=200,
-    save_steps=500,
+    save_strategy="steps",
+    save_steps=200,
     load_best_model_at_end=True,
     report_to="none",
     fp16=torch.cuda.is_available(),
@@ -92,7 +94,7 @@ trainer = Trainer(
     args=args,
     train_dataset=train_ds,
     eval_dataset=val_ds,
-    tokenizer=tokenizer,
+    processing_class=tokenizer,
 )
 
 start = time.time()
@@ -106,6 +108,7 @@ print(f"  Final train loss: {result.training_loss:.4f}")
 model.save_pretrained("models/sft_checkpoint")
 tokenizer.save_pretrained("models/sft_checkpoint")
 print("  Model saved → models/sft_checkpoint/")
+logs = trainer.state.log_history
 
 #  Plot loss curve
 train_loss = [(x["step"], x["loss"]) for x in logs if "loss" in x]
