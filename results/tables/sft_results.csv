@@ -1,0 +1,2 @@
+model,method,train_samples,epochs,initial_loss,final_train_loss,final_eval_loss,training_time_min
+gpt2,SFT,5000,3,3.856,1.286,1.18,11.9
