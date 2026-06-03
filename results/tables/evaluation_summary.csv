@@ -1,0 +1,4 @@
+Method,Avg Score,Std Dev,Min Score,Max Score,Avg Latency(s),Avg Word Count
+SFT Baseline,0.7352,0.117,0.562,0.8928,0.891,47.3
+DPO Fine-tuned,0.6701,0.0872,0.5063,0.7642,0.569,26.5
+RLHF Fine-tuned,0.7312,0.0772,0.5047,0.7863,0.292,18.8
