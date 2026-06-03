@@ -1,0 +1,2 @@
+method,beta,train_pairs,eval_pairs,epochs,final_loss,training_time_min,avg_reward_margin
+DPO,0.1,3000,300,1,0.6448,16.6,0.3823

@@ -1,0 +1,2 @@
+method,reward_train_samples,epochs,final_train_loss,training_time_min,good_response_score,bad_response_score,score_gap
+RLHF,2000,2,0.7227,4.6,0.2563,0.2878,-0.0315
