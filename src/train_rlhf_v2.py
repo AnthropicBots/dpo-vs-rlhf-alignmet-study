@@ -30,7 +30,7 @@ tokenizer.pad_token = tokenizer.eos_token
 
 raw = load_dataset("Anthropic/hh-rlhf")
 
-# ── Custom reward dataset ──────────────────────────────────
+# Custom reward dataset
 class RewardDataset(Dataset):
     def __init__(self, data, tokenizer, max_len=256):
         self.samples = []
@@ -55,13 +55,13 @@ train_ds = RewardDataset(raw["train"].select(range(2000)), tokenizer)
 eval_ds  = RewardDataset(raw["test"].select(range(200)),  tokenizer)
 print(f"  Train: {len(train_ds)} | Eval: {len(eval_ds)}")
 
-# ── Reward model ───────────────────────────────────────────
+#Reward model 
 print("\n[2/4] Loading reward model...")
 reward_model = AutoModelForSequenceClassification.from_pretrained(
     SFT_PATH, num_labels=1).to(DEVICE)
 print(f"  Params: {sum(p.numel() for p in reward_model.parameters())/1e6:.1f}M")
 
-# ── Custom loss function ───────────────────────────────────
+#Custom loss function
 class RewardModelTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
         r_w = model(input_ids=inputs["input_ids_chosen"],
@@ -72,7 +72,7 @@ class RewardModelTrainer(Trainer):
         loss = -torch.nn.functional.logsigmoid(r_w - r_l).mean()
         return (loss, {"r_w": r_w, "r_l": r_l}) if return_outputs else loss
 
-# ── Training args ──────────────────────────────────────────
+# Training args 
 print("\n[3/4] Training reward model...")
 args = TrainingArguments(
     output_dir="models/reward_checkpoint",
@@ -108,7 +108,7 @@ tokenizer.save_pretrained("models/rlhf_checkpoint")
 print("  Saved → models/reward_checkpoint/")
 print("  Saved → models/rlhf_checkpoint/")
 
-# ── Test reward model ──────────────────────────────────────
+#Test reward model 
 print("\n[4/4] Testing reward model...")
 tests = [
     ("GOOD", "Machine learning is a field of AI where computers learn from data. It includes supervised, unsupervised, and reinforcement learning approaches."),
@@ -125,7 +125,7 @@ for label, text in tests:
     scores.append(score)
     print(f"  [{label}] {score:+.3f} | {text[:65]}...")
 
-# ── Plot ───────────────────────────────────────────────────
+#Plot 
 logs       = trainer.state.log_history
 t_steps    = [x["step"] for x in logs if "loss" in x and "eval_loss" not in x]
 t_losses   = [x["loss"] for x in logs if "loss" in x and "eval_loss" not in x]
