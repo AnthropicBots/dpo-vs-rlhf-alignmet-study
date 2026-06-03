@@ -30,7 +30,7 @@ print(f"\n  Device : {DEVICE}")
 print(f"  Beta   : {BETA}")
 print(f"  LR     : {LR}")
 
-# ── Load tokenizer + models ────────────────────────────────
+# Load tokenizer + models
 print("\n[1/5] Loading SFT checkpoint...")
 tokenizer = AutoTokenizer.from_pretrained(SFT_PATH)
 tokenizer.pad_token    = tokenizer.eos_token
@@ -41,7 +41,7 @@ ref_model = AutoModelForCausalLM.from_pretrained(SFT_PATH).to(DEVICE)
 print("  Policy model    : loaded")
 print("  Reference model : loaded (frozen SFT copy)")
 
-# ── Dataset ────────────────────────────────────────────────
+#Dataset
 print("\n[2/5] Preparing preference dataset...")
 raw = load_dataset("Anthropic/hh-rlhf")
 
@@ -60,7 +60,7 @@ eval_ds  = raw["test"].select(range(300)).map(
 print(f"  Train pairs : {len(train_ds)}")
 print(f"  Eval pairs  : {len(eval_ds)}")
 
-# ── DPO Config ─────────────────────────────────────────────
+#DPO Config
 print("\n[3/5] Configuring DPO trainer...")
 config = DPOConfig(
     output_dir="models/dpo_checkpoint",
@@ -90,7 +90,7 @@ trainer = DPOTrainer(
     processing_class=tokenizer,
 )
 
-# ── Train ──────────────────────────────────────────────────
+#Train
 print("\n[4/5] Training DPO model...")
 print("  Watch for:")
 print("  loss decreasing from ~0.693")
@@ -109,7 +109,7 @@ model.save_pretrained("models/dpo_checkpoint")
 tokenizer.save_pretrained("models/dpo_checkpoint")
 print("  Saved → models/dpo_checkpoint/")
 
-# ── Save graphs ────────────────────────────────────────────
+#Save graphs
 print("\n[5/5] Saving graphs and stats...")
 logs         = trainer.state.log_history
 steps        = [x["step"] for x in logs if "loss" in x and "eval_loss" not in x]
@@ -159,7 +159,7 @@ pd.DataFrame([{
 }]).to_csv("results/tables/dpo_results.csv", index=False)
 print("  Saved → results/tables/dpo_results.csv")
 
-# ── Generation test ────────────────────────────────────────
+# Generation test
 print("\n  Generation test (DPO aligned model):")
 for prompt in ["\n\nHuman: What is machine learning?\n\nAssistant:",
                "\n\nHuman: How do I reduce stress?\n\nAssistant:"]:
