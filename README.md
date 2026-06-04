@@ -48,11 +48,11 @@ This study presents a systematic empirical comparison on GPT-2 using the Anthrop
 
 | Day | Task | Status | Key Result |
 |-----|------|--------|------------|
-| Day 1 | Environment setup, dataset exploration | ✅ Complete | 160,800 pairs analysed, 2 figures saved |
-| Day 2 | SFT baseline training | ✅ Complete | Loss 3.856 → 1.180 in 11.9 min |
-| Day 3 | DPO + RLHF training | ✅ Complete | DPO 16.6 min, RLHF 4.6 min |
-| Day 4 | Full evaluation + all graphs | ✅ Complete | 4 figures, 2 tables, full comparison |
-| Day 5 | Paper writing + arXiv upload | ✅ Complete | Paper generated, ready to submit |
+| Week 1 | Environment setup, dataset exploration | ✅ Complete | 160,800 pairs analysed, 2 figures saved |
+| Week 2 | SFT baseline training | ✅ Complete | Loss 3.856 → 1.180 in 11.9 min |
+| Week 3 | DPO + RLHF training | ✅ Complete | DPO 16.6 min, RLHF 4.6 min |
+| Week 4 | Full evaluation + all graphs | ✅ Complete | 4 figures, 2 tables, full comparison |
+| Week 5 | Paper writing + arXiv upload | ✅ Complete | Paper generated, ready to submit |
 
 ---
 
