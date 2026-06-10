@@ -10,7 +10,7 @@
 
 </div>
 
-**Author:** Mohit Yadav — Chandigarh University, India  
+**Author:** Mohit Yadav —  India  
 **Target Venue:** EMNLP 2025 / COLING 2026  
 **Repository:** https://github.com/AnthropicBots/dpo-vs-rlhf-alignmet-study  
 **Contact:** Available via GitHub Issues
